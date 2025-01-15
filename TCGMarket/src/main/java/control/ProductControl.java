@@ -15,9 +15,7 @@ import model.ProductModelDS;
  */
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	// ProductModelDS usa il DataSource
-	// ProductModelDM usa il DriverManager
-	static boolean isDataSource = true;
+	
 	static ProductModel model = new ProductModelDS();
 	public ProductControl() {
 		super();
