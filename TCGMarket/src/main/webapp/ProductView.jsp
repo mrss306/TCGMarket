@@ -67,13 +67,14 @@
 			maxlength="20" required placeholder="inserisci id"><br>
 
 		<label for="nome">Nome:</label><br> <input name="nome"
-			type="text" maxlength="20" required placeholder="inserisci nome"><br>
+			type="text" maxlength="200" required placeholder="inserisci nome"><br>
 
 		<label for="descrizione">Descrizione:</label><br>
 		<textarea name="descrizione" maxlength="100" rows="3" required
 			placeholder="inserisci descrizione"></textarea>
+			
 		<br> <label for="prezzo">Prezzo:</label><br> <input
-			name="prezzo" type="number" min="0" value="0" required><br>
+			name="prezzo" type="number" min="0" value="0" step="0.01" required><br>
 
 		<label for="saldo">Saldo:</label> <input name="saldo" type="number"
 			value="0" required><br> <label for="data">Data
