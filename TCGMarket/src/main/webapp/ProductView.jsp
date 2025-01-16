@@ -22,16 +22,18 @@
 </head>
 <body>
 	<div style="clear: right; float: right; text-align: right;">
-		<br /> <a href="cart.jsp"> visualizza Carrello</a> <br />
+		<br /> <a href="cart.jsp"> Visualizza Carrello</a> <br />
 	</div>
 	<h2>Prodotti</h2>
 	<a href="product">Lista</a>
 	<table border="1">
 		<tr>
-			<th>Id <a href="product?sort=id">Sort</a></th>
-			<th>Nome <a href="product?sort=nome">Sort</a></th>
-			<th>Prezzo <a href="product?sort=prezzo">Sort</a></th>
-			<th>Action</th>
+			<th><a href="product?sort=id">Id</a></th>
+			<th><a href="product?sort=nome">Nome</a></th>
+			<th><a href="product?sort=prezzo">Prezzo</a></th>
+			<th><a href="product?sort=quantita">Quantita'</a></th>
+			
+			<th>Azioni</th>
 		</tr>
 		<%
 			if (products != null && products.size() != 0) {
@@ -42,7 +44,9 @@
 		<tr>
 			<td><%=bean.getId()%></td>
 			<td><%=bean.getNome()%></td>
-			<td><%=bean.getPrezzo()%></td>
+			<td><%=bean.getPrezzo()%></td>			
+			<td><%=bean.getQuantità()%></td>
+			
 
 			<td><a href="product?action=read&id=<%=bean.getId()%>">Dettagli</a><br>
 				<a href="product?action=addC&id=<%=bean.getId()%>">Aggiungi al
@@ -85,6 +89,5 @@
 			type="submit" value="Add"><input type="reset" value="Reset">
 	</form>
 
-		<a href="cart.jsp">visualizza Carrello</a>
 </body>
 </html>
