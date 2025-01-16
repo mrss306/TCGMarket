@@ -33,9 +33,13 @@ public class ItemOrder {
 	  public String getDescrizione() {
 	    return(getItem().getDescrizione());
 	  }
+	  
+	  public String getNome() {
+		  return(getItem().getNome());
+	  }
 	 
 	  public double getPrezzo() {
-	    return(getItem().getPrezzo());
+		  return(Math.round(getItem().getPrezzo()*100.0))/100.0;
 	  }
 	  
 	  public int getNumItems() {
