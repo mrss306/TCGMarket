@@ -35,7 +35,7 @@ public class ProductModelDS implements ProductModel {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
-				+ " (id,nome,prezzo, saldo, data_di_uscita,descrizione,quantità ) VALUES (?, ?, ?, ?,?,?,?)";
+				+ " (id,nome,prezzo, saldo, data_di_uscita,descrizione,quantita ) VALUES (?, ?, ?, ?,?,?,?)";
 		
 		try {
 			connection = ds.getConnection();
@@ -85,7 +85,7 @@ public class ProductModelDS implements ProductModel {
 				bean.setSaldo(rs.getInt("saldo"));
 				bean.setData_uscita(rs.getDate("data_di_uscita").toLocalDate());
 				bean.setDescrizione(rs.getString("descrizione"));
-				bean.setQuantità(rs.getInt("quantità"));
+				bean.setQuantità(rs.getInt("quantita"));
 			}
 
 		}finally {
@@ -108,7 +108,7 @@ public class ProductModelDS implements ProductModel {
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE CODE = ?";
+		String deleteSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -157,7 +157,7 @@ public class ProductModelDS implements ProductModel {
 				bean.setSaldo(rs.getInt("saldo"));
 				bean.setData_uscita(rs.getDate("data_di_uscita").toLocalDate());
 				bean.setDescrizione(rs.getString("descrizione"));
-				bean.setQuantità(rs.getInt("quantità"));
+				bean.setQuantità(rs.getInt("quantita"));
 				products.add(bean);
 			}
 

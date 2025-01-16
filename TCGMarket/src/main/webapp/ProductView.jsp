@@ -60,6 +60,9 @@
 	<form action="product" method="post">
 		<input type="hidden" name="action" value="insert"> 
 		
+		<label for="id">id:</label><br> 
+		<input name="id" type="number" maxlength="20" required placeholder="inserisci id"><br>
+		
 		<label for="nome">Nome:</label><br> 
 		<input name="nome" type="text" maxlength="20" required placeholder="inserisci nome"><br> 
 		
@@ -72,11 +75,11 @@
 		<label for="saldo">Saldo:</label>
 		<input name="saldo" type="number" value="0" required><br>
 		
-		<label for="data_uscita">Data di uscita</label><br>
-		<input name="data_uscita" type="date" required><br>
+		<label for="data">Data di uscita</label><br>
+		<input name="data" type="date" required><br>
 					
 		<label for="quantità">Quantità:</label><br> 
-		<input name="quantità" type="number" min="1" value="1" required><br>
+		<input name="quant" type="number" min="1" value="1" required><br>
 
 		<input type="submit" value="Add"><input type="reset" value="Reset">
 	</form>
@@ -92,7 +95,7 @@
 		   for(ItemOrder beancart: prodcart) {
 		%>
 		<tr>
-			<td><%=beancart.getItem() %></td>
+			<td><%=beancart.getItem().toString()  %>,<%=beancart.getNumItems() %></td>
 			<td><a href="product?action=deleteC&id=<%=beancart.getId()%>">Elimina dal carrello</a></td>
 		</tr>
 		<%} %>
