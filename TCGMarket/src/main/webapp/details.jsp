@@ -37,6 +37,7 @@
 			<td><%=product.getData_uscita()%></td>
 			<td><%=product.getDescrizione()%></td>
 			<td><%=product.getQuantità()%></td>
+			<td><a href="product?action=addC&id=<%=product.getId()%>">Aggiungi al carrello</a></td>
 		</tr>
 	</table>
 	<%
