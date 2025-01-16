@@ -25,7 +25,7 @@
 	<table border="1">
 		<tr>
 			<th>Id <a href="product?sort=id">Sort</a></th>
-			<th>Nome <a href="product?sort=name">Sort</a></th>
+			<th>Nome <a href="product?sort=nome">Sort</a></th>
 			<th>Prezzo <a href="product?sort=prezzo">Sort</a></th>
 			<th>Action</th>
 		</tr>
@@ -78,7 +78,7 @@
 		<label for="data">Data di uscita</label><br>
 		<input name="data" type="date" required><br>
 					
-		<label for="quantità">Quantità:</label><br> 
+		<label for="quant">Quantita':</label><br> 
 		<input name="quant" type="number" min="1" value="1" required><br>
 
 		<input type="submit" value="Add"><input type="reset" value="Reset">

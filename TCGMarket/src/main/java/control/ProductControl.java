@@ -37,14 +37,18 @@ public class ProductControl extends HttpServlet {
 					int id = Integer.parseInt(request.getParameter("id"));
 					cart.deleteProduct(id);
 				} else if (action.equalsIgnoreCase("read")) {
+					
 					int id = Integer.parseInt(request.getParameter("id"));
 					request.removeAttribute("product");
 					request.setAttribute("product", model.doRetrieveByKey(id));
+					response.sendRedirect("details.jsp");
+					
 				} else if (action.equalsIgnoreCase("delete")) {
+					
 					int id = Integer.parseInt(request.getParameter("id"));
 					model.doDelete(id);
-				} else if (action.equalsIgnoreCase("insert")) {
 					
+				} else if (action.equalsIgnoreCase("insert")) {
 					
 					int id = Integer.parseInt(request.getParameter("id"));
 					String nome = request.getParameter("nome");
@@ -62,6 +66,7 @@ public class ProductControl extends HttpServlet {
 					bean.setDescrizione(descrizione);
 					bean.setQuantità(quantità);
 					model.doSave(bean);
+					
 				}
 			}
 		} catch (SQLException e) {
@@ -77,7 +82,7 @@ public class ProductControl extends HttpServlet {
 			System.out.println("Error:" + e.getMessage());
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
-		dispatcher.forward(request, response);
+		dispatcher.include(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
