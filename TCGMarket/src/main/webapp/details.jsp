@@ -1,11 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProductBean,model.Cart, model.ItemOrder"%>
     
 <%
-	Collection<?> products = (Collection<?>) request.getAttribute("products");
-	if(products == null) {
-		response.sendRedirect("./product");	
-		return;
-	}
+	
 	
 	ProductBean product = (ProductBean) request.getAttribute("product");
 	

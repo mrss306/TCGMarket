@@ -41,7 +41,7 @@ public class ProductControl extends HttpServlet {
 					int id = Integer.parseInt(request.getParameter("id"));
 					request.removeAttribute("product");
 					request.setAttribute("product", model.doRetrieveByKey(id));
-					response.sendRedirect("details.jsp");
+					request.getRequestDispatcher("details.jsp").forward(request, response);
 					
 				} else if (action.equalsIgnoreCase("delete")) {
 					
