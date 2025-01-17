@@ -19,14 +19,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="ProductStyle.css" rel="stylesheet" type="text/css">
 <title>Catalogo</title>
+<style>
+	table {
+  		margin-left:auto;
+ 		margin-right:auto;
+ 	}
+	table, th, td {
+  		border: 1px solid black;
+  		border-collapse: collapse;
+	}
+	th, td {
+  		padding: 5px;
+	}
+	td {
+  		text-align: left;
+  		border-spacing: 10px;
+	}
+	h2 {
+		text-align: center;
+		clear: both;
+	}
+	div.container {
+		display: flex;
+  		justify-content: space-between;
+  		align-items: flex-end;
+	}
+	</style>
 </head>
 <body>
-	<div style="clear: right; float: right; text-align: right;">
-		<br /> <a href="cart.jsp"> Visualizza Carrello</a> <br />
+	
+	<div class="container">
+		<a href="product">Lista</a>
+		<a href="cart.jsp">Visualizza Carrello</a>
 	</div>
+	
 	<h2>Prodotti</h2>
-	<a href="product">Lista</a>
-	<table border="1">
+	
+	<table>
 		<tr>
 			<th><a href="product?sort=id">Id</a></th>
 			<th><a href="product?sort=nome">Nome</a></th>
@@ -64,29 +93,31 @@
 		%>
 	</table>
 
-	<h2>Insert</h2>
-	<form action="product" method="post">
-		<input type="hidden" name="action" value="insert"> <label
-			for="id">id:</label><br> <input name="id" type="number"
-			maxlength="20" required placeholder="inserisci id"><br>
-
-		<label for="nome">Nome:</label><br> <input name="nome"
-			type="text" maxlength="200" required placeholder="inserisci nome"><br>
-
+	<h2 style="text-align:center;">Insert</h2>
+	<form style="text-align:center;" action="product" method="post">
+		<input type="hidden" name="action" value="insert">
+		
+		<label for="id">Id:</label><br> 
+		<input name="id" type="number"maxlength="20" required placeholder="inserisci id"><br>
+		
+		<label for="nome">Nome:</label><br> 
+		<input name="nome" type="text" maxlength="20" required placeholder="inserisci nome"><br>
 		<label for="descrizione">Descrizione:</label><br>
-		<textarea name="descrizione" maxlength="100" rows="3" required
-			placeholder="inserisci descrizione"></textarea>
-			
-		<br> <label for="prezzo">Prezzo:</label><br> <input
-			name="prezzo" type="number" min="0" value="0" step="0.01" required><br>
-
-		<label for="saldo">Saldo:</label> <input name="saldo" type="number"
-			value="0" required><br> <label for="data">Data
-			di uscita</label><br> <input name="data" type="date" required><br>
-
-		<label for="quant">Quantita':</label><br> <input name="quant"
-			type="number" min="1" value="1" required><br> <input
-			type="submit" value="Add"><input type="reset" value="Reset">
+		<textarea name="descrizione" maxlength="100" rows="3" required placeholder="inserisci descrizione"></textarea><br>
+		
+		<label for="prezzo">Prezzo:</label><br> 
+		<input name="prezzo" type="number" min="0" value="0" step="0.01" required><br>
+		
+		<label for="saldo">Saldo:</label><br> 
+		<input name="saldo" type="number" value="0" required><br>	
+		 
+		<label for="data">Data di uscita</label><br> 
+		<input name="data" type="date" required><br>
+		
+		<label for="quant">Quantita':</label><br>
+		<input name="quant" type="number" min="1" value="1" required><br>
+	
+		<input type="submit" value="Add"><input type="reset" value="Reset">
 	</form>
 
 </body>
