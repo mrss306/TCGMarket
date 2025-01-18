@@ -104,6 +104,7 @@
 	<%
 	}
 	%>
-	<form><input type="submit" formaction="Ordine" value="Checkout"></form>
+	<form><input type="hidden" name="action" value="CompletaOrdine">
+	<input type="submit" formaction="Ordine" value="Checkout"></form>
 </body>
 </html>

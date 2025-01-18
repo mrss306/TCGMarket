@@ -74,5 +74,14 @@ public class Cart {
 	public List<ItemOrder> getProducts() {
 		return products;
 	}
+	
+	public float getTotalCost() {
+		float costo_totale=0;
+		for (int i = 0; i < products.size(); i++) {
+			costo_totale += ((ItemOrder) products.get(i)).getTotalCost();
+		
+	}
+		return costo_totale;
+}
 
 }
