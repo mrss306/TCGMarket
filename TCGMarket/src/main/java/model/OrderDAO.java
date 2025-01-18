@@ -13,6 +13,11 @@ public class OrderDAO {
 	static Connection currentCon = null;
 	static ResultSet rs = null;
 	static int numordine;
+	
+	public OrderDAO() {
+		super();
+		
+	}
 
 	static {
 		try {
