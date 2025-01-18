@@ -70,6 +70,7 @@
 		</tr>
 		<%
 		List<ItemOrder> prodcart = cart.getProducts();
+		float prezzo_finale = 0;
 		for (ItemOrder beancart : prodcart) {
 		%>
 		<tr>
@@ -77,7 +78,7 @@
 			<td><form>
 				<INPUT type="hidden" name=itemID value=<%=beancart.getId()%>>
 				<INPUT TYPE=TEXT NAME=numItems SIZE=3 VALUE=<%=beancart.getNumItems()%>> 
-				<INPUT TYPE=SUBMIT VALUE="Update Order">
+				<INPUT TYPE=SUBMIT VALUE="Update">
                  </form></td>
 
 			<td><%=beancart.getTotalCost()%> Euro</td>
@@ -85,11 +86,24 @@
 					dal carrello</a></td>
 		</tr>
 		<%
-		}
+		prezzo_finale += beancart.getTotalCost();
+		
 		%>
+		
+		<%
+		}
+		%><tr>
+		<th  colspan=3>Totale </th>
+		<td>  <%=prezzo_finale %></td>
+		</tr>
 	</table>
+	
+	
+	
+	
 	<%
 	}
 	%>
+	<form><input type="submit" formaction="Ordine" value="Checkout"></form>
 </body>
 </html>
