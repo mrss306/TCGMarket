@@ -23,19 +23,22 @@ public class OrdineControl extends HttpServlet {
 			throws ServletException, IOException {
 
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		
+		OrderDAO order= new OrderDAO();
 
 		String action = request.getParameter("action");
 
 		if (action != null) {
 			if (action.equalsIgnoreCase("CompletaOrdine")) {
-				HttpSession session = request.getSession(true);					
-				OrderDAO.setOrder((UserBean)session.getAttribute("currentSessionUser"), cart);
+				 HttpSession session = request.getSession(true);	     
+
+				order.doSave((UserBean)session.getAttribute("currentSessionUser"), cart);
 				session.setAttribute("cart", new Cart());
+
+
+
 			} 
 		}
 	}
-
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
