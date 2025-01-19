@@ -52,9 +52,11 @@
 	</table>
 	
 	<br>
+	<div class = "wrapper">
 	<form class=details action="product?action=addC&id=<%=product.getId()%>" method="post" id="checkout">
 	<button class=btn type="submit">Aggiungi al carrello</button>
 	</form>
+	</div>
 	</div>
 
 <%
