@@ -92,4 +92,20 @@ public class OrderDAO {
 
 		
 
+	public static OrderBean getOrderById(String OrderID)
+	{  //TODO
+		return null;
+		
+		
+	}
+	
+	public static OrderBean getAllOrdersByUser(UserBean user)
+	{  //TODO
+		return null;
+		
+
+	}
+	
+	
+	
 	}

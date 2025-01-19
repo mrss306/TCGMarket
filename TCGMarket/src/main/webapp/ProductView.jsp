@@ -31,8 +31,8 @@
 	<h2>Prodotti</h2>
 	
 	<table>
-	<thead>
-		<tr>
+	<thead class=catalogo>
+		<tr >
 			<th><a href="product?sort=id">Id</a></th>
 			<th><a href="product?sort=nome">Nome</a></th>
 			<th><a href="product?sort=prezzo">Prezzo</a></th>
@@ -41,6 +41,7 @@
 			<th>Azioni</th>
 		</tr>
 	</thead>
+	<tbody class=catalogo>
 		<%
 			if (products != null && products.size() != 0) {
 				Iterator<?> it = products.iterator();
@@ -68,6 +69,7 @@
 		<%
 			}
 		%>
+	</tbody>
 	</table>
 
 	<h2 style="text-align:center;">Insert</h2>
