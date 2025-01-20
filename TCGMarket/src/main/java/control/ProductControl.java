@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import model.Cart;
 import model.ProductBean;
-import model.ProductModel;
 import model.ProductDAO;
 /**
  * Servlet implementation class ProductControl
@@ -16,7 +15,7 @@ import model.ProductDAO;
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	static ProductModel model = new ProductDAO();
+	static ProductDAO model = new ProductDAO();
 	public ProductControl() {
 		super();
 	}
@@ -44,8 +43,40 @@ public class ProductControl extends HttpServlet {
 					request.setAttribute("product", model.doRetrieveByKey(id));
 					request.getRequestDispatcher("productDetails.jsp").forward(request, response);
 					
+				}else if (action.equalsIgnoreCase("Update")) {
+					int id = Integer.parseInt(request.getParameter("id"));
+					ProductBean product = new ProductBean();
+					product = model.doRetrieveByKey(id);
+					Integer Newid = Integer.parseInt(request.getParameter("NewID"));
+					String nome = request.getParameter("nome");
+					Float prezzo = Float.parseFloat(request.getParameter("prezzo"));
+					Integer saldo = Integer.parseInt(request.getParameter("saldo"));
+					LocalDate data_uscita = LocalDate.parse(request.getParameter("data"));
+					String descrizione = request.getParameter("descrizione");
+					Integer quantità = Integer.parseInt(request.getParameter("quantita"));
+					if (Newid != null) {
+						product.setId(Newid);
+					}
+					if (nome != null) {
+						product.setNome(nome);
+					}
+					if (prezzo != null) {
+						product.setPrezzo(prezzo);
+					}
+					if (saldo != null) {
+						product.setSaldo(saldo);
+					}
+					if (data_uscita != null) {
+						product.setData_uscita(data_uscita);
+					}
+					if (descrizione != null) {
+						product.setDescrizione(descrizione);
+					}
+					if (quantità != null) {
+						product.setQuantità(quantità);
+					}
+					model.Alter(id, product);
 				} else if (action.equalsIgnoreCase("delete")) {
-					
 					int id = Integer.parseInt(request.getParameter("id"));
 					model.doDelete(id);
 					
