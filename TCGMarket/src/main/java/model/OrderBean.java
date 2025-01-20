@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class OrderBean {
+	private long id;
 	private long num_ordine;
 	private float costo_totale;
 	private String indirizzo_spedizione;
@@ -11,6 +12,12 @@ public class OrderBean {
 	private String Username;
 	private LocalDate data_ordine;
 
+	public long  getId() {
+		return id;
+	}
+	public void setId(long l) {
+		this.id = l;
+	}
 	public long getNum_ordine() {
 		return num_ordine;
 	}

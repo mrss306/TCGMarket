@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProductBean,model.Cart, model.ItemOrder"%>
-  
+
+    
 <%
 	
 	ProductBean product = (ProductBean) request.getAttribute("product");
@@ -31,9 +32,7 @@
 			<th>Prezzo</th>
 			<th>Saldo</th>
 			<th>Data di uscita</th>
-			<th>Voto</th>
 			<th>Descrizione</th>
-			<th>Peso</th>
 			<th>Quantità</th>
 		</tr>
 		</thead>
@@ -52,7 +51,8 @@
 	</table>
 	
 	<br>
-	<div class = "wrapper">
+	
+	<div class="wrapper">
 	<form class=details action="product?action=addC&id=<%=product.getId()%>" method="post" id="checkout">
 	<button class=btn type="submit">Aggiungi al carrello</button>
 	</form>
