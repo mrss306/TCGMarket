@@ -33,12 +33,10 @@ public class OrdineControl extends HttpServlet {
 			if (action.equalsIgnoreCase("CompletaOrdine")) {
 				HttpSession session = request.getSession(true);
 
-				System.out.print(request.getAttribute("indirizzo"));
-				System.out.print(request.getAttribute("pagamento"));
 				order.doSave((UserBean) session.getAttribute("currentSessionUser"), request.getParameter("indirizzo"),
 						request.getParameter("pagamento"), cart);
 				session.setAttribute("cart", new Cart());
-				response.sendRedirect("./product");
+				response.sendRedirect("./Homepage.jsp");
 
 			}
 

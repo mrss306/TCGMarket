@@ -13,30 +13,33 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class ProductModelDS implements ProductModel {
-	
+public class ProductDAO implements ProductModel {
+
 	private static DataSource ds;
-	
+
 	static {
 		try {
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context) initCtx.lookup("java:comp/env");
-			
+
 			ds = (DataSource) envCtx.lookup("jdbc/tcgmarket");
-		}catch (NamingException e) {
-			System.out.println("Error: "+e.getMessage());
+
+		} catch (NamingException e) {
+			System.out.println("Error:" + e.getMessage());
 		}
 	}
-	
+
 	private static final String TABLE_NAME = "articolo";
 
 	@Override
 	public synchronized void doSave(ProductBean product) throws SQLException {
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		String insertSQL = "INSERT INTO " + ProductModelDS.TABLE_NAME
+
+		String insertSQL = "INSERT INTO " + ProductDAO.TABLE_NAME
 				+ " (id,nome,prezzo, saldo, data_di_uscita,descrizione,quantita ) VALUES (?, ?, ?, ?,?,?,?)";
-		
+
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
@@ -51,7 +54,7 @@ public class ProductModelDS implements ProductModel {
 			preparedStatement.executeUpdate();
 
 			connection.commit();
-		}finally {
+		} finally {
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
@@ -66,18 +69,18 @@ public class ProductModelDS implements ProductModel {
 	public synchronized ProductBean doRetrieveByKey(int id) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+
 		ProductBean bean = new ProductBean();
-		
-		String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME + " WHERE id = ?";
-		
+
+		String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME + " WHERE id = ?";
+
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setInt(1, id);
-			
+
 			ResultSet rs = preparedStatement.executeQuery();
-			
+
 			while (rs.next()) {
 				bean.setId(rs.getInt("id"));
 				bean.setNome(rs.getString("nome"));
@@ -86,9 +89,10 @@ public class ProductModelDS implements ProductModel {
 				bean.setData_uscita(rs.getDate("data_di_uscita").toLocalDate());
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setQuantità(rs.getInt("quantita"));
+
 			}
 
-		}finally {
+		} finally {
 			try {
 				if (preparedStatement != null)
 					preparedStatement.close();
@@ -99,16 +103,15 @@ public class ProductModelDS implements ProductModel {
 		}
 		return bean;
 	}
-	
+
 	@Override
 	public synchronized boolean doDelete(int id) throws SQLException {
-
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + ProductModelDS.TABLE_NAME + " WHERE id = ?";
+		String deleteSQL = "DELETE FROM " + ProductDAO.TABLE_NAME + " WHERE id = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -136,7 +139,7 @@ public class ProductModelDS implements ProductModel {
 
 		Collection<ProductBean> products = new LinkedList<ProductBean>();
 
-		String selectSQL = "SELECT * FROM " + ProductModelDS.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
 			selectSQL += " ORDER BY " + order;

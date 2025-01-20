@@ -31,7 +31,7 @@ public class AddressDAO {
 	private static final String TABLE_NAME2 = "indirizzo";
 	private static final String TABLE_NAME3 = "indirizzo_spedizione";
 
-	public synchronized static List<AddressBean> getAddresses(UserBean user) {
+	public synchronized List<AddressBean> getAddresses(UserBean user) {
 		List<AddressBean> addresses = new LinkedList<AddressBean>();
 		PreparedStatement preparedStatement = null;
 		String SearchQuery = "Select " + TABLE_NAME3 + ".*" + " FROM " + TABLE_NAME + " Join " + TABLE_NAME2

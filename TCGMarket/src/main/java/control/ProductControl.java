@@ -9,14 +9,14 @@ import javax.servlet.http.*;
 import model.Cart;
 import model.ProductBean;
 import model.ProductModel;
-import model.ProductModelDS;
+import model.ProductDAO;
 /**
  * Servlet implementation class ProductControl
  */
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	static ProductModel model = new ProductModelDS();
+	static ProductModel model = new ProductDAO();
 	public ProductControl() {
 		super();
 	}
@@ -82,7 +82,7 @@ public class ProductControl extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Homepage.jsp");
 		dispatcher.include(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
