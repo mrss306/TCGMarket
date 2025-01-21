@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	import="java.util.*,model.ProductBean,model.Cart,model.ItemOrder"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
+<%@ include file="./fragments/header.jsp" %>
+
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link href="NewFile.css" rel="stylesheet" type="text/css">
+<meta charset="UTF-8">
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <title>Carrello</title>
 </head>
 <body>
@@ -80,8 +82,9 @@
 		</tfoot>
 	</table>
 	<br>
+	
 	<div class=wrapper>
-	<form class=cart action="CheckOut" method="get" id="checkout">
+	<form class=cart action="./CheckoutPage.jsp" method="get" id="checkout">
 	<button class=btn type="submit">Checkout</button>
 	</form>
 	</div>
@@ -89,5 +92,7 @@
 	<%
 	}
 	%>
+	
 </body>
+<%@ include file="./fragments/footer.html" %>
 </html>

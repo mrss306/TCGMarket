@@ -1,7 +1,7 @@
 <%@page import="model.*"%>
-<%@ page contentType="text/html; charset=UTF-8"
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	import="java.util.*,model.ProductBean,model.Cart, model.ItemOrder"%>
-
+<%@ include file="./fragments/header.jsp" %>
 
 <%
 OrderBean order = (OrderBean) session.getAttribute("ordine");
@@ -11,8 +11,8 @@ LinkedList<ContentBean> products = (LinkedList<ContentBean>) session.getAttribut
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link href="NewFile.css" rel="stylesheet" type="text/css">
+<meta charset="UTF-8">
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <title>Dettagli</title>
 
 </head>
@@ -93,4 +93,5 @@ LinkedList<ContentBean> products = (LinkedList<ContentBean>) session.getAttribut
 	%>
 
 </body>
+<%@ include file="./fragments/footer.html" %>
 </html>
