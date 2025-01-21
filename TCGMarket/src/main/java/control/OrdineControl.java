@@ -3,8 +3,6 @@ package control;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import java.io.IOException;
-import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -12,7 +10,6 @@ import javax.servlet.http.*;
 import model.Cart;
 import model.ContentBean;
 import model.OrderDAO;
-import model.ProductBean;
 import model.ProductDAO;
 import model.UserBean;
 

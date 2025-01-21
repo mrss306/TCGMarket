@@ -3,7 +3,17 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="./fragments/header.jsp" %>
+<%
+if (session == null || session.getAttribute("currentSessionUser") == null) {
+%>
+<%@ include file="./fragments/header.jsp"%>
+<%
+} else {
+%>
+<%@ include file="./fragments/headerlogged.jsp"%>
+<%
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,12 +64,15 @@
 	
 		<select id="indirizzo" name="indirizzo" class=select-large>
 			<%
+			if( indirizzi != null) {
+				System.out.print("indirizzi non null");
 			for (String indirizzo : indirizzi) {
 			%>
 			<option value="<%=indirizzo%>">
 				<%=indirizzo%>
 			</option>
 			<%
+			}
 			}
 			%>
 		</select> <a href=AddressRegistration.jsp>Inserisci un indirizzo</a> <br>
@@ -70,12 +83,14 @@
 
 		<select id="metodoPagamento" name="pagamento" class=select-large>
 			<%
+			if(metodiPagamento != null) {
 			for (String metodoPagamento : metodiPagamento) {
 			%>
 			<option value="<%=metodoPagamento%>"><%=metodoPagamento%>
 			</option>
 
 			<%
+			}
 			}
 			%>
 		</select> <a href=PaymentMethodRegistration.jsp>Inserisci un metodo di

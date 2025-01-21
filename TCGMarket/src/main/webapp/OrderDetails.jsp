@@ -1,7 +1,17 @@
 <%@page import="model.*"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	import="java.util.*,model.ProductBean,model.Cart, model.ItemOrder"%>
-<%@ include file="./fragments/header.jsp" %>
+<%
+if (session == null || session.getAttribute("currentSessionUser") == null) {
+%>
+<%@ include file="./fragments/header.jsp"%>
+<%
+} else {
+%>
+<%@ include file="./fragments/headerlogged.jsp"%>
+<%
+}
+%>
 
 <%
 OrderBean order = (OrderBean) session.getAttribute("ordine");

@@ -1,5 +1,15 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" import="java.util.*,model.ProductBean,model.Cart, model.ItemOrder"%>
-<%@ include file="./fragments/header.jsp" %>
+<%
+if (session == null || session.getAttribute("currentSessionUser") == null) {
+%>
+<%@ include file="./fragments/header.jsp"%>
+<%
+} else {
+%>
+<%@ include file="./fragments/headerlogged.jsp"%>
+<%
+}
+%>
     
 <%
 	

@@ -10,6 +10,7 @@ public class UserBean {
     private String paese_residenza;
     private LocalDate data_nascita;
     public boolean valid;
+    private boolean admin;
     
     public String getUsername() {
   		return username;
@@ -65,6 +66,14 @@ public class UserBean {
 	}
 	public void setValid(boolean valid) {
 		this.valid = valid;
+	}
+	public boolean IsAdmin() {
+
+		return admin;
+	}
+	public void setAdmin(Boolean admin) {
+		this.admin=admin;
+
 	}
 	
 	
