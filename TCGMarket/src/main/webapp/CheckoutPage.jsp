@@ -64,15 +64,18 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 	
 		<select id="indirizzo" name="indirizzo" class=select-large>
 			<%
-			if( indirizzi != null) {
-				System.out.print("indirizzi non null");
-			for (String indirizzo : indirizzi) {
+			if (indirizzi != null) {
+				for (String indirizzo : indirizzi) {
 			%>
 			<option value="<%=indirizzo%>">
 				<%=indirizzo%>
 			</option>
 			<%
 			}
+			} else {
+			%>
+			<option> nessun indirizzo in archivio</option>
+			<%
 			}
 			%>
 		</select> <a href=AddressRegistration.jsp>Inserisci un indirizzo</a> <br>
@@ -102,7 +105,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 				<thead>
 					<tr>
 						<th>Articolo:</th>
-						<th>Quantità:</th>
+						<th>Quantit&agrave;:</th>
 						<th>Prezzo:</th>
 						<th>Azioni:</th>
 					</tr>
@@ -155,5 +158,5 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 	%>
 
 </body>
-<%@ include file="./fragments/footer.html" %>
+<%@ include file="./fragments/footer.html"%>
 </html>

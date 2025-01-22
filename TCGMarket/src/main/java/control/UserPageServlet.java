@@ -13,27 +13,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.*;
+import model.AddressBean;
+import model.AddressDAO;
+import model.PaymentMethodBean;
+import model.PaymentMethodDAO;
+import model.UserBean;
 
 /**
- * Servlet implementation class CheckOutServlet
+ * Servlet implementation class UserPageServlet
  */
-@WebServlet("/CheckOut")
-public class CheckOutServlet extends HttpServlet {
+@WebServlet("/UserPage")
+public class UserPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckOutServlet() {
+    public UserPageServlet() {
         super();
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		UserBean user = (UserBean) session.getAttribute("currentSessionUser");
 		AddressDAO addressDAO = new AddressDAO();
 		PaymentMethodDAO paymentMethodDAO = new PaymentMethodDAO();
@@ -62,10 +67,9 @@ public class CheckOutServlet extends HttpServlet {
 		}
 		session.setAttribute("indirizzi", indirizzi);
 		session.setAttribute("metodi", metodiPagamento);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CheckoutPage.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/UserPage.jsp");
 		dispatcher.include(request, response);
 
-		
 	}
 
 	/**
