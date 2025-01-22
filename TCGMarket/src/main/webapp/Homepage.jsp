@@ -64,9 +64,10 @@ if (products == null) {
 					LinkedList<PhotoBean> foto= (LinkedList<PhotoBean>) fotodao.getPhotos(bean);
 			%>
 			<tr>
+			
 				<td><img src="data:image/jpg;base64,<%=foto.get(0).getBase64image() %> " width=200 height=200/></td>
 				<td><%=bean.getNome()%></td>
-				<%=String.format("%.2f", bean.getPrezzo())%> &euro;
+				<td><%=String.format("%.2f", bean.getPrezzo())%> &euro;</td>
 				<td><%=bean.getQuantità()%></td>
 				<td><a href="product?action=read&id=<%=bean.getId()%>">Dettagli</a><br>
 					<a href="product?action=addC&id=<%=bean.getId()%>">Aggiungi al

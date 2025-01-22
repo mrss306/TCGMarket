@@ -190,17 +190,33 @@ $(document).ready(function(event) {
 			return false;
 		}
 	})
+$("#myform input[name=usr]").keyup(function(event) {
+		$.post("./validation", { "username": $("#myform input[name=usr]").val() }, function(data) {
+			console.log(data);
+			if (data===true) {
+				$("#myform input[name=usr]").css({
+					"border-color": "red",
+					"border-width": "thick"
+				});
+				console.log("username già esistente");
+
+			}
+			else {
+				$("#myform input[name=usr]").css({
+					"border-color": "green",
+					"border-width": "thick"
+				});
+				console.log("username nuovo");
+			}
+		}, 'JSON');
+	});
+
+
 	$(":input").click(function() {
 		this.focus();
 
 	})
-	
+
 
 }
 )
-
-
-
-
-
-
