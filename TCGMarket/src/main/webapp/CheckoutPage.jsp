@@ -7,6 +7,7 @@
 if (session == null || session.getAttribute("currentSessionUser") == null) {
 %>
 <%@ include file="./fragments/header.jsp"%>
+
 <%
 } else {
 %>
@@ -14,14 +15,22 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 <%
 }
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link href="./style/style.css" rel="stylesheet" type="text/css">
+<link href="./style/error.css" rel="stylesheet" type="text/css">
+<script src="./js/checkout.js"></script>
 <title>Checkout</title>
 </head>
 <body>
+	<div class="alert">
+		<span class="closebtn"
+			onclick="this.parentElement.style.display='none';">&times;</span> <span
+			id="errorspan"></span>
+	</div>
 
 	<%
 	Cart cart = (Cart) session.getAttribute("cart");
@@ -55,16 +64,18 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 	<br>
 
 
-	
-	<div class=div-num-ceck><h3>Indirizzo di consegna</h3></div>
-	
+
+	<div class=div-num-ceck>
+		<h3>Indirizzo di consegna</h3>
+	</div>
+
 	<form>
 
 
-	
+
 		<select id="indirizzo" name="indirizzo" class=select-large>
 			<%
-			if (indirizzi != null) {
+			if (!indirizzi.isEmpty() ) {
 				for (String indirizzo : indirizzi) {
 			%>
 			<option value="<%=indirizzo%>">
@@ -74,19 +85,19 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 			}
 			} else {
 			%>
-			<option> nessun indirizzo in archivio</option>
+			<option selected value="nessun indirizzo in archivio" disabled>nessun indirizzo in archivio</option>
 			<%
 			}
 			%>
 		</select> <a href=AddressRegistration.jsp>Inserisci un indirizzo</a> <br>
-		
-		
-		
+
+
+
 		<h3>Metodo di pagamento</h3>
 
 		<select id="metodoPagamento" name="pagamento" class=select-large>
 			<%
-			if(metodiPagamento != null) {
+			if(!metodiPagamento.isEmpty() ) {
 			for (String metodoPagamento : metodiPagamento) {
 			%>
 			<option value="<%=metodoPagamento%>"><%=metodoPagamento%>
@@ -94,6 +105,11 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 
 			<%
 			}
+			} else {
+			%>
+			<option selected value="nessun metodo di pagamento in archivio"
+				disabled>nessun metodo di pagamento in archivio</option>
+			<%
 			}
 			%>
 		</select> <a href=PaymentMethodRegistration.jsp>Inserisci un metodo di
@@ -121,7 +137,8 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 					<tr>
 						<td><%=beancart.getNome()%></td>
 						<td><%=beancart.getNumItems()%></td>
-						<%=String.format("%.2f", beancart.getTotalCost()) %> &euro;</td>
+						<td><%=String.format("%.2f", beancart.getTotalCost())%>
+							&euro;</td>
 						<td><a href="product?action=deleteC&id=<%=beancart.getId()%>">Elimina
 								dal carrello</a></td>
 					</tr>
@@ -138,7 +155,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 
 					<tr>
 						<th colspan=3>Totale:</th>
-						<td><%=prezzo_finale%> &euro;</td>
+						<td><%=String.format("%.2f", prezzo_finale)%> &euro;</td>
 					</tr>
 				</tfoot>
 			</table>
