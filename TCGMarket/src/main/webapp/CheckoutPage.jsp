@@ -121,7 +121,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 					<tr>
 						<td><%=beancart.getNome()%></td>
 						<td><%=beancart.getNumItems()%></td>
-						<td><%=beancart.getTotalCost()%> &euro;</td>
+						<%=String.format("%.2f", beancart.getTotalCost()) %> &euro;</td>
 						<td><a href="product?action=deleteC&id=<%=beancart.getId()%>">Elimina
 								dal carrello</a></td>
 					</tr>

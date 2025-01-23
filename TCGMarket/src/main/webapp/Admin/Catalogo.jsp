@@ -22,7 +22,7 @@
 				<th><a href="product?sort=id">Id </a></th>
 				<th><a href="product?sort=nome">Nome</a></th>
 				<th><a href="product?sort=prezzo">Prezzo</a></th>
-				<th><a href="product?sort=quantita">Quantita'</a></th>
+				<th><a href="product?sort=quantita">Quantit&agrave;</a></th>
 				<th>Saldo</th>
 				<th>Data di uscita</th>
 				<th>Descrizione</th>

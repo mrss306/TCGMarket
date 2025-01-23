@@ -69,7 +69,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 						VALUE=<%=beancart.getNumItems()%>> <INPUT TYPE=SUBMIT
 						VALUE=Update>
 				</form></td>
-			<td><%=beancart.getTotalCost()%> &euro;</td>
+			<td><%= String.format("%.2f", beancart.getTotalCost()) %> &euro;</td>
 			<td><a href="product?action=deleteC&id=<%=beancart.getId()%>">Elimina
 					dal carrello</a></td>
 		</tr>
@@ -86,7 +86,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 		
 		<tr>
 		<th  colspan=3>Totale: </th>
-		<td> <%=prezzo_finale %> &euro;</td>
+		<td> <%=String.format("%.2f", prezzo_finale)  %> &euro;</td>
 		</tr>
 		</tfoot>
 	</table>
