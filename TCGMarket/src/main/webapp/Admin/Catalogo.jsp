@@ -1,13 +1,27 @@
 <%@page import="model.*"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collection"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%
+if (session == null || session.getAttribute("currentSessionUser") == null) {
+%>
+<%@ include file="../fragments/header.jsp"%>
+
+<%
+} else {
+%>
+<%@ include file="../fragments/headerlogged.jsp"%>
+<%
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Catalogo</title>
+<script src="./js/catalogo.js"></script>
 </head>
 <body>
 	<%
@@ -26,6 +40,7 @@
 				<th>Saldo</th>
 				<th>Data di uscita</th>
 				<th>Descrizione</th>
+				<th>Visibile</th>
 			</tr>
 		</thead>
 		<tbody class=catalogo>
@@ -57,7 +72,7 @@
 				<td><form action="product">
 						<INPUT type="hidden" name=itemID value=<%=bean.getId()%>>
 						<INPUT type="hidden" name="action" value="update"> <INPUT
-							TYPE=number min="0" NAME=quantita VALUE=<%=bean.getQuantità()%>>
+							TYPE=number min="0" NAME=quantita VALUE=<%=bean.getQuantitÃ ()%>>
 						<INPUT TYPE=SUBMIT VALUE=Update>
 					</form></td>
 
@@ -80,6 +95,9 @@
 							TYPE=TEXT name=descrizione VALUE=<%=bean.getDescrizione()%>>
 						<INPUT TYPE=SUBMIT VALUE=Update>
 					</form></td>
+				
+				<td><INPUT TYPE="checkbox" value=<%=bean.getId()%>
+					NAME="mostra" <%if (bean.isVisible()) {%> checked <%}%>></td>
 			</tr>
 
 			<%
@@ -120,4 +138,5 @@
 	</div>
 
 </body>
+<%@ include file="../fragments/footer.html"%>
 </html>

@@ -14,6 +14,7 @@ public class ProductBean implements Serializable{
 	LocalDate data_uscita;
 	String descrizione;
 	int quantità;
+	boolean visible;
 	
 	public ProductBean() {
 		id = -1;
@@ -23,7 +24,16 @@ public class ProductBean implements Serializable{
 		data_uscita = LocalDate.MIN;
 		descrizione = "";
 		quantità = -1;
+		visible = false;
 		
+	}
+	
+	public boolean isVisible() {
+		return visible;
+	}
+	
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 	public int getId() {

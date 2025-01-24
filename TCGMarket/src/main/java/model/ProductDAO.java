@@ -38,7 +38,7 @@ public class ProductDAO implements ProductModel {
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + ProductDAO.TABLE_NAME
-				+ " (id,nome,prezzo, saldo, data_di_uscita,descrizione,quantita ) VALUES (?, ?, ?, ?,?,?,?)";
+				+ " (id,nome,prezzo, saldo, data_di_uscita,descrizione,quantita,mostra ) VALUES (?, ?, ?, ?,?,?,?,?)";
 
 		try {
 			connection = ds.getConnection();
@@ -50,6 +50,7 @@ public class ProductDAO implements ProductModel {
 			preparedStatement.setDate(5, Date.valueOf(product.getData_uscita()));
 			preparedStatement.setString(6, product.getDescrizione());
 			preparedStatement.setInt(7, product.getQuantità());
+			preparedStatement.setBoolean(8, product.isVisible());
 
 			preparedStatement.executeUpdate();
 
@@ -89,6 +90,7 @@ public class ProductDAO implements ProductModel {
 				bean.setData_uscita(rs.getDate("data_di_uscita").toLocalDate());
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setQuantità(rs.getInt("quantita"));
+				bean.setVisible(rs.getBoolean("mostra"));
 
 			}
 
@@ -161,6 +163,7 @@ public class ProductDAO implements ProductModel {
 				bean.setData_uscita(rs.getDate("data_di_uscita").toLocalDate());
 				bean.setDescrizione(rs.getString("descrizione"));
 				bean.setQuantità(rs.getInt("quantita"));
+				bean.setVisible(rs.getBoolean("mostra"));
 				products.add(bean);
 			}
 
@@ -181,7 +184,7 @@ public class ProductDAO implements ProductModel {
 		PreparedStatement preparedStatement = null;
 		String alterStatement = "UPDATE `tcgmarket`.`articolo` SET `id` = ?, `nome` = ?, "
 				+ "`prezzo` = ?, `saldo` = ?, `data_di_uscita` = ?, "
-				+ "`descrizione` = ?, `quantita` = ? WHERE (`id` = ?);";
+				+ "`descrizione` = ?, `quantita` = ?, `mostra`=? WHERE (`id` = ?);";
 
 		try {
 			connection = ds.getConnection();
@@ -193,7 +196,8 @@ public class ProductDAO implements ProductModel {
 			preparedStatement.setDate(5, Date.valueOf(product.getData_uscita()));
 			preparedStatement.setString(6, product.getDescrizione());
 			preparedStatement.setInt(7, product.getQuantità());
-			preparedStatement.setLong(8, id);
+			preparedStatement.setBoolean(8, product.isVisible());
+			preparedStatement.setLong(9, id);
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
