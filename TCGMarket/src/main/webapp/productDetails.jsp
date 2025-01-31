@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=ISO-8859-1" import="java.util.*,model.ProductBean,model.Cart, model.ItemOrder"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProductBean,model.Cart, model.ItemOrder"%>
 <%
 if (session == null || session.getAttribute("currentSessionUser") == null) {
 %>
@@ -21,7 +21,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <link href="./style/style.css" rel="stylesheet" type="text/css">
 <title>Dettagli</title>
 
@@ -42,7 +42,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 			<th>Saldo</th>
 			<th>Data di uscita</th>
 			<th>Descrizione</th>
-			<th>Quantità</th>
+			<th>QuantitÃ </th>
 		</tr>
 		</thead>
 		
@@ -53,7 +53,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 			<td><%=product.getSaldo()%></td>
 			<td><%=product.getData_uscita()%></td>
 			<td><%=product.getDescrizione()%></td>
-			<td><%=product.getQuantità()%></td>
+			<td><%=product.getQuantitÃ ()%></td>
 		</tr>
 		</tbody>
 	</table>

@@ -13,7 +13,9 @@
 	text-align: left;
 	font: bold 16px sans-serif;
 	position: absolute;
-	bottom: 0;
+	margin: 100% 0px 0px 0px;
+	display: flex;
+    justify-content: space-around;
 }
 
 .footer-container .footer-left, .footer-container .footer-center,
@@ -28,7 +30,7 @@ h3 {
 }
 
 .footer-container .footer-left {
-	width: 40%;
+	width: 33%;
 }
 
 /* The company logo */
@@ -131,7 +133,7 @@ h3 {
 	color: #92999f;
 	font-size: 13px;
 	font-weight: normal;
-	margin: 0;
+	margin-top: 10px;
 }
 
 .footer-container .footer-company-about span {
