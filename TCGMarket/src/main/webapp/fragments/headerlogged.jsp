@@ -21,12 +21,12 @@
 					<a id="nav-toggle" href="#!"><span></span></a>
 				</div>
 				<ul class="nav-list">
-
-					<li>
+				
+		<!-- 			<li>
 						<form action="" id="searchform" method="get">
 							<input type="search" name="search" placeholder="Cerca..." />
 						</form>
-					</li>
+					</li> -->
 
 					<li><a href="#!">Ciao, <%=((UserBean) session.getAttribute("currentSessionUser")).getNome()%>
 					</a>

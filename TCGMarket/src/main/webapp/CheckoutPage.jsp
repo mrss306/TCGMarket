@@ -26,12 +26,11 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 <title>Checkout</title>
 </head>
 <body>
-	<div class="alert">
-		<span class="closebtn"
-			onclick="this.parentElement.style.display='none';">&times;</span> <span
-			id="errorspan"></span>
-	</div>
-
+<div class="alert">
+			<span class="closebtn" 
+				onclick="this.parentElement.style.display='none';">&times;</span>
+				<span id="errorspan"></span>
+		</div>
 	<%
 	Cart cart = (Cart) session.getAttribute("cart");
 	String itemID = request.getParameter("itemID");
@@ -61,19 +60,18 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 
 
 	<h1>Riepilogo dell'ordine</h1>
-	<br>
 
 
-
-	<div class=div-num-ceck>
-		<h3>Indirizzo di consegna</h3>
-	</div>
-
-	<form>
-
-
-
-		<select id="indirizzo" name="indirizzo" class=select-large>
+	<div>
+		
+		
+		<div class="user-container">
+		
+			<ul>
+				<li>
+					<div class="user-payment">
+					<h3>Indirizzo di consegna</h3>
+						<select id="indirizzo" name="indirizzo" class=select-large>
 			<%
 			if (!indirizzi.isEmpty() ) {
 				for (String indirizzo : indirizzi) {
@@ -85,43 +83,75 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 			}
 			} else {
 			%>
-			<option selected value="nessun indirizzo in archivio" disabled>nessun indirizzo in archivio</option>
+			<option>Nessun indirizzo in archivio</option>
 			<%
 			}
 			%>
-		</select> <a href=AddressRegistration.jsp>Inserisci un indirizzo</a> <br>
+				</select>
+		<br>
+			<div class="user-link">
+				<a href=AddressRegistration.jsp>Inserisci un nuovo indirizzo</a>
+			</div>
+		<br>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
 
 
+<br>
 
-		<h3>Metodo di pagamento</h3>
 
-		<select id="metodoPagamento" name="pagamento" class=select-large>
+	<div>
+		
+		
+		<div class="user-container">
+			<ul>
+				<li>
+					<div class="user-payment">
+					<h3>Metodo di pagamento</h3>
+						<select id="metodoPagamento" name="pagamento" class=select-large>
 			<%
-			if(!metodiPagamento.isEmpty() ) {
-			for (String metodoPagamento : metodiPagamento) {
+			if (!metodiPagamento.isEmpty() ) {
+				for (String metodoPagamento : metodiPagamento) {
 			%>
-			<option value="<%=metodoPagamento%>"><%=metodoPagamento%>
-			</option>
+					<option value="<%=metodoPagamento%>"><%=metodoPagamento%>
+					</option>
 
 			<%
 			}
 			} else {
 			%>
-			<option selected value="nessun metodo di pagamento in archivio"
-				disabled>nessun metodo di pagamento in archivio</option>
+					<option>Nessun metodo di pagamento registrato</option>
 			<%
 			}
 			%>
-		</select> <a href=PaymentMethodRegistration.jsp>Inserisci un metodo di
-			pagamento</a><br>
+				</select>
+		<br>
+			<div class="user-link">
+				<a href=PaymentMethodRegistration.jsp>Inserisci un nuovo metodo di
+				pagamento</a>
+			</div>
+		<br>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+
+
+
 
 		<h3>Rivedi gli articoli</h3>
-		<div class=checkout>
-			<table class=checkout>
-				<thead>
+		<div class=details>
+			<table >
+				<thead class=details>
 					<tr>
 						<th>Articolo:</th>
-						<th>Quantit&agrave;:</th>
+						<th>Quantit&agrave;</th>
 						<th>Prezzo:</th>
 						<th>Azioni:</th>
 					</tr>
@@ -133,7 +163,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 				for (ItemOrder beancart : prodcart) {
 				%>
 
-				<tbody>
+				<tbody class=details>
 					<tr>
 						<td><%=beancart.getNome()%></td>
 						<td><%=beancart.getNumItems()%></td>
@@ -160,7 +190,9 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 				</tfoot>
 			</table>
 		</div>
-		<br> <input type=hidden name=action value=CompletaOrdine>
+		<br>
+		<form>
+		 <input type=hidden name=action value=CompletaOrdine>
 
 		<div class=wrapper>
 
