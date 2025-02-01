@@ -91,12 +91,13 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 		</tfoot>
 	</table>
 	<br>
-	
+	<%if (!cart.IsEmpty()) {%>
 	<div class=wrapper>
 	<form class=cart action="./CheckoutPage.jsp" method="get" id="checkout">
 	<button class=btn type="submit">Checkout</button>
 	</form>
 	</div>
+	<%} %>
 	</div>
 	<%
 	}
