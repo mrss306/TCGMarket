@@ -29,9 +29,13 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 	Collection<?> products = (Collection<?>) session.getAttribute("products");
 	%>
 
+
+
+
+
 	<h2 style="text-align: center;">Inserisci nuovo articolo</h2>
-	<div class=details>
-	<form method="post" id="a_form" action="product"></form>
+<div class=details>
+	<form method="post" id="a_form" action="product">
 	<table>
 	
 		<thead class=details>
@@ -39,7 +43,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 			<th>Id</th>
 			<th>Nome</th>
 			<th>Prezzo</th>
-			<th>Quantità</th>
+			<th>Quantit&agrave;</th>
 			<th>Saldo</th>
 			<th>Data di uscita</th>
 			<th>Descrizione</th>
@@ -77,7 +81,7 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
         		</td>
         		<td>
             		<input type="hidden" name="action" value="insert">
-            		<input class=details name="descrizione" type="text" maxlength="100"
+            		<input class=details name="descrizione" type="text" maxlength="100"  
             		required placeholder="Inserisci descrizione">
         		</td>
         		<td>
@@ -88,108 +92,103 @@ if (session == null || session.getAttribute("currentSessionUser") == null) {
 				</td>
         </tbody>	
     </table>
-</div>
+    </form>
+</div>	
+		
 
-	<h2>Prodotti</h2>
 
-	<div class=details>
+<h2>Prodotti</h2>
+	 
+<div class=details>
+	
 
-		<form method="GET" id="my_form" action="product"></form>
-		<table>
-
-			<thead class=details>
-				<tr>
-					<th><a href="product?sort=id">Id </a></th>
-					<th><a href="product?sort=nome">Nome</a></th>
-					<th><a href="product?sort=prezzo">Prezzo</a></th>
-					<th><a href="product?sort=quantita">Quantit&agrave;</a></th>
-					<th>Saldo</th>
-					<th>Data di uscita</th>
-					<th>Descrizione</th>
-					<th>Visibile</th>
-					<th></th>
-					<%
+	<table>
+	
+		<thead class=details>
+		<tr>
+			<th><a href="product?sort=id">Id </a></th>
+			<th><a href="product?sort=nome">Nome</a></th>
+			<th><a href="product?sort=prezzo">Prezzo</a></th>
+			<th><a href="product?sort=quantita">Quantit&agrave;</a></th>
+			<th>Saldo</th>
+			<th>Data di uscita</th>
+			<th>Descrizione</th>
+			<th>Visibile</th>
+			<th></th>
+    		<%
 			if (products != null && products.size() != 0) {
 				Iterator<?> it = products.iterator();
 				while (it.hasNext()) {
 					ProductBean bean = (ProductBean) it.next();
 			%>
-				</tr>
-			</thead>
+			</tr>
+		</thead>
+			
+        <tbody  class=details>
+        	<tr>
+        		<td>
+        		<INPUT class="catalogo-admin old" TYPE=hidden  name="OldID" VALUE=<%=bean.getId()%>> 
+					<INPUT class="catalogo-admin new" TYPE=number  name="NewID" VALUE=<%=bean.getId()%>> 
+        		</td>
+        		
+        		<td>
+					<INPUT TYPE=TEXT class="nome" NAME=nome VALUE=<%=bean.getNome()%>>
+				</td>
+				<td>
+					<INPUT TYPE=text step="any" class="prezzo" NAME=prezzo VALUE=<%=String.format("%.2f", bean.getPrezzo())%>>
+				</td>
+				<td>
+					<INPUT TYPE=number min="0" class="quantita" NAME=quantita VALUE=<%=bean.getQuantità()%>>
+				</td>
 
-			<tbody class=details>
-				<tr>
-					<td>
-						<INPUT class="catalogo-admin" type="hidden" name=itemID value=<%=bean.getId()%>> 
-						<INPUT class="catalogo-admin" type="hidden" name="action" value="update"> 
-						<INPUT class="catalogo-admin" TYPE=number name="NewID" value=<%=bean.getId()%>> 
-						<%-- <INPUT TYPE=SUBMIT VALUE=Update>--%>
-					</td>
+				<td>
+					<INPUT type=number min="0" class="saldo" NAME=saldo VALUE=<%=bean.getSaldo()%>>
+				</td>
 
-					<td><INPUT type="hidden" name=itemID value=<%=bean.getId()%>>
-						<INPUT type="hidden" name="action" value="update"> 
-						<INPUT type=TEXT NAME=nome value=<%=bean.getNome()%>> 
-						<%-- <INPUT TYPE=SUBMIT VALUE=Update>--%>
-					</td>
+
+				<td>
+					<INPUT TYPE=date class="data" name="data" VALUE=<%=bean.getData_uscita()%>>
+				</td>
+
+				<td>
+					<INPUT TYPE=TEXT class="descrizione" name=descrizione VALUE=<%=bean.getDescrizione()%>>
+				</td>
+
 					
-					<td>
-						<INPUT type="hidden" name=itemID value=<%=bean.getId()%>>
-						<INPUT type="hidden" name="action" value="update"> 
-						<INPUT id=prezzo_cat TYPE=text step="any" NAME=prezzo VALUE=<%=String.format("%.2f", bean.getPrezzo())%>>
-						<%-- <INPUT TYPE=SUBMIT VALUE=Update>--%>
-					</td>
-					<td>
-						<INPUT type="hidden" name=itemID value=<%=bean.getId()%>>
-						<INPUT type="hidden" name="action" value="update"> 
-						<INPUT type=number min="0" NAME=quantita value=<%=bean.getQuantità()%>>
-						<%-- <INPUT TYPE=SUBMIT VALUE=Update>--%>
-				   </td>
-
-					<td>
-						<INPUT type="hidden" name="action" value="update">
-						<INPUT type="hidden" name="action" value="update"> 
-						<INPUT type="hidden" name=itemID value=<%=bean.getId()%>> 
-						<INPUT type=number min="0" NAME=saldo VALUE=<%=bean.getSaldo()%>>
-						<%-- <INPUT TYPE=SUBMIT VALUE=Update>--%>
-					</td>
-
-					<td>
-						<INPUT type="hidden" name=itemID value=<%=bean.getId()%>>
-						<INPUT type="hidden" name="action" value="update"> 
-						<INPUT type=date value=<%=bean.getData_uscita()%>> 
-						<%-- <INPUT TYPE=SUBMIT VALUE=Update>--%>
-					</td>
-
-					<td>
-						<INPUT type="hidden" name=itemID value=<%=bean.getId()%>>
-						<INPUT type="hidden" name="action" value="update"> 
-						<INPUT type=TEXT name=descrizione VALUE=<%=bean.getDescrizione()%>>
-						<%-- <INPUT TYPE=SUBMIT VALUE=Update>--%>
-					</td>
-
-					<td>
-						<INPUT TYPE="checkbox" value=<%=bean.getId()%> 
-							name="mostra" <%if (bean.isVisible()) {%> checked <%}%>>
-					</td>
-					<td>
-						<INPUT class=btn-det TYPE=SUBMIT VALUE=Update>
-					</td>
+				<td><INPUT TYPE="checkbox" value=<%=bean.getId()%>
+					NAME="mostra" <%if (bean.isVisible()) {%> checked <%}%>>
+				</td>
+				<td>
+					<INPUT class="btn-det" TYPE=SUBMIT VALUE="Update">
+				</td>
+				
 					
-				</tr>
-				<%
+    		</tr>
+    		
+    		<%
 			}
 			} else {
 			%>
-				<tr>
-					<td colspan="6">Nessun prodotto disponibile</td>
-				</tr>
-				<%
+			<tr>
+				<td colspan="6">Nessun prodotto disponibile</td>
+			</tr>
+			<%
 			}
 			%>
-			</tbody>
+			</tbody>	
+    	
+	</table>
+</div>	
+		
 
-		</table>
-	</div>
+
+
+
+
+
+
+
+
 
 </body>
 <%@ include file="../fragments/footer.html"%>

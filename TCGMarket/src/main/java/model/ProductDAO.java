@@ -182,9 +182,10 @@ public class ProductDAO implements ProductModel {
 	public synchronized void Alter(long id, ProductBean product) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		String alterStatement = "UPDATE `tcgmarket`.`articolo` SET `id` = ?, `nome` = ?, "
+		String alterStatement = "UPDATE `comicshop`.`articolo` SET `id` = ?, `nome` = ?, "
 				+ "`prezzo` = ?, `saldo` = ?, `data_di_uscita` = ?, "
-				+ "`descrizione` = ?, `quantita` = ?, `mostra`=? WHERE (`id` = ?);";
+				+ "`descrizione` = ?, `quantita` = ?  "
+				+ " WHERE (`id` = ?);";
 
 		try {
 			connection = ds.getConnection();
@@ -196,11 +197,11 @@ public class ProductDAO implements ProductModel {
 			preparedStatement.setDate(5, Date.valueOf(product.getData_uscita()));
 			preparedStatement.setString(6, product.getDescrizione());
 			preparedStatement.setInt(7, product.getQuantità());
-			preparedStatement.setBoolean(8, product.isVisible());
-			preparedStatement.setLong(9, id);
+			preparedStatement.setLong(8, id);
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
 		}
 		
@@ -217,6 +218,5 @@ public class ProductDAO implements ProductModel {
 			}
 	}
 	}
-
 
 }

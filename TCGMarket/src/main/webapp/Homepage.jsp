@@ -45,6 +45,7 @@ if (products == null) {
 
 
 	<h2>Prodotti</h2>
+	<br>
 	<div class="grid-container">
 	<%
 			if (products != null && products.size() != 0) {
@@ -60,127 +61,37 @@ if (products == null) {
 			</div>
 			<div class="item-description">
 				<h4><%=bean.getNome()%></h4>
-				<h5><%=String.format("%.2f", bean.getPrezzo())%> &euro;</h5>
-				<h6><a href="product?action=addC&id=<%=bean.getId()%>">Aggiungi al carrello</a></h6>
-			</div> 	
+				<h5><%=String.format("%.2f", bean.getPrezzo())%>
+					&euro;
+				</h5>
+				<h6>
+					<a href="product?action=addC&id=<%=bean.getId()%>">Aggiungi al
+						carrello</a>
+				</h6>
+			</div>
 		</div>
-					
-					
-					
-					
-					<%
-			} else {
-			continue;
-			}
-			}
-			} else {
-			%>
-			
-				<h3>Nessun prodotto disponibile</h3>
-			
-			<%
-			}
-			%>
+
+
+
+
+
+
+		<%
+		} else {
+		continue;
+		}
+		}
+		} else {
+		%>
+
+		<h3>Nessun prodotto disponibile</h3>
+
+		<%
+		}
+		%>
+
 	</div>
-<%-- 
-	<table>
-		<thead class=catalogo>
-			<tr>
-				<th>Foto</th>
-				<th><a href="product?sort=nome">Nome</a></th>
-				<th><a href="product?sort=prezzo">Prezzo</a></th>
-				<th><a href="product?sort=voto">Voto</a></th>
-				<th><a href="product?sort=quantita">Quantita'</a></th>
-				<th>Azioni</th>
-			</tr>
-		</thead>
-		<tbody class=catalogo>
-			<%
-			if (products != null && products.size() != 0) {
-				Iterator<?> it = products.iterator();
-				while (it.hasNext()) {
-					ProductBean bean = (ProductBean) it.next();
-					LinkedList<PhotoBean> foto = (LinkedList<PhotoBean>) fotodao.getPhotos(bean);
-					if (bean.isVisible()) {
-			%>
-			<tr>
-				<td><img
-					src="data:image/jpg;base64,<%=foto.get(0).getBase64image()%> "
-					width=200 height=200 /></td>
-				<td><%=bean.getNome()%></td>
-				<td><%=String.format("%.2f", bean.getPrezzo())%> &euro;</td>
-				<td><%=bean.getVoto()%></td>
-				<td><%=bean.getQuantità()%></td>
-				<td><a href="product?action=read&id=<%=bean.getId()%>">Dettagli</a><br>
-					<a href="product?action=addC&id=<%=bean.getId()%>">Aggiungi al
-						carrello</a></td>
-			</tr>
-			<%
-			} else {
-			continue;
-			}
-			}
-			} else {
-			%>
-			<tr>
-				<td colspan="6">Nessun prodotto disponibile</td>
-			</tr>
-			<%
-			}
-			%>
-		</tbody>
-	</table>
---%>
-<%--
-	<table>
-		<thead class=catalogo>
-			<tr>
-				<th>Foto</th>
-				<th><a href="product?sort=nome">Nome</a></th>
-				<th><a href="product?sort=prezzo">Prezzo</a></th>
-				<th><a href="product?sort=quantita">Quantita'</a></th>
-				<th>Azioni</th>
-			</tr>
-		</thead>
-		<tbody class=catalogo>
-			<%
-			if (products != null && products.size() != 0) {
-				Iterator<?> it = products.iterator();
-				while (it.hasNext()) {
-					ProductBean bean = (ProductBean) it.next();
-					LinkedList<PhotoBean> foto = (LinkedList<PhotoBean>) fotodao.getPhotos(bean);
-					if (bean.isVisible()) {
-			%>
-			<tr>
-				<td><img
-					src="data:image/jpg;base64,<%=foto.get(0).getBase64image()%> "
-					width=200 height=200 /></td>
-				<td><%=bean.getNome()%></td>
-				<td><%=String.format("%.2f", bean.getPrezzo())%> &euro;</td>
-				<td><%=bean.getQuantità()%></td>
-				<td><a href="product?action=read&id=<%=bean.getId()%>">Dettagli</a><br>
-					<a href="product?action=addC&id=<%=bean.getId()%>">Aggiungi al
-						carrello</a></td>
-			</tr>
 
-			<%
-			} else {
-			continue;
-			}
-			}
-			} else {
-			%>
-			<tr>
-				<td colspan="6">Nessun prodotto disponibile</td>
-			</tr>
-			<%
-			}
-			%>
-		</tbody>
-	</table>
-
-
-<--%>
 </body>
 
 <%@ include file="./fragments/footer.html"%>
